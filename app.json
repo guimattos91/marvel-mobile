@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "pokemon-mobile",
-    "slug": "pokemon-mobile",
+    "name": "marvel-mobile",
+    "slug": "marvel-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

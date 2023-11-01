@@ -2,6 +2,7 @@
 import { GluestackUIProvider, config } from '@gluestack-ui/themed';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
+
 import Routes from 'routes/index';
 
 const App: React.FC = () => {
@@ -9,7 +10,7 @@ const App: React.FC = () => {
     <NavigationContainer>
       <GluestackUIProvider config={config.theme}>
         <Routes />
-        <StatusBar style="auto" />
+        <StatusBar style="light" backgroundColor="#aa0000" />
       </GluestackUIProvider>
     </NavigationContainer>
   );

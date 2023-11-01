@@ -17,7 +17,7 @@
         "./src/env/*"
       ],
       "helpers/*": [
-        "./src/helpers/*"
+        "src/helpers/*"
       ],
       "hooks/*": [
         "./src/hooks/*"
