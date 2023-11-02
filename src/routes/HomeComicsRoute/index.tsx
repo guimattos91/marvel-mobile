@@ -24,7 +24,7 @@ const HomeComicsRoute: React.FC = () => {
           screenOptions={{
             headerShown: false,
             headerStyle: {
-              backgroundColor: '#272b33',
+              backgroundColor: 'black',
             },
           }}
         >

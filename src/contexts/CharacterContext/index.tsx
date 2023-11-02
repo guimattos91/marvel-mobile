@@ -14,6 +14,7 @@ interface IContextProps {
   character: CharacterType | null;
   error: string | null;
   isLoading: boolean;
+  setCharacter: React.Dispatch<React.SetStateAction<CharacterType | null>>;
   fetchCharacter: (id: number | string) => Promise<void>;
 }
 
@@ -51,6 +52,7 @@ export const CharacterProvider: React.FC<ICharactersProviderProps> = ({
           character,
           isLoading,
           error,
+          setCharacter,
           fetchCharacter,
         }),
         [character, isLoading, error, fetchCharacter],

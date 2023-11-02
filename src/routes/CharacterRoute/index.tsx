@@ -9,7 +9,7 @@ import { CharacterType } from 'types/CharacterType';
 
 export type CharacterRouterParamListType = {
   Character: { character: CharacterType };
-  ListBooks: undefined;
+  ListBooks: { character: CharacterType };
 };
 
 export type CharacterViewRouterType = NativeStackScreenProps<
@@ -25,14 +25,40 @@ const CharacterRoute: React.FC<CharacterViewRouterType> = ({ route }) => {
   return (
     <CharacterProvider>
       <Tab.Navigator>
-        <Tab.Screen name="Character" options={{ title: 'Character' }}>
+        <Tab.Screen
+          name="Character"
+          options={{
+            tabBarLabel: 'Characters',
+            tabBarInactiveTintColor: 'grey',
+            tabBarActiveTintColor: '#aa0000',
+            tabBarIndicatorStyle: { backgroundColor: '#aa0000' },
+            tabBarStyle: {
+              paddingTop: 50,
+              backgroundColor: 'black',
+              borderBottomColor: '#aa0000',
+              borderColor: '#aa0000',
+            },
+          }}
+        >
           {props => <CharacterScreen {...props} character={character} />}
         </Tab.Screen>
         <Tab.Screen
           name="ListBooks"
-          options={{ title: 'Comics' }}
-          component={CharacterComicScreen}
-        />
+          options={{
+            tabBarLabel: 'Comics',
+            tabBarInactiveTintColor: 'grey',
+            tabBarActiveTintColor: '#aa0000',
+            tabBarIndicatorStyle: { backgroundColor: '#aa0000' },
+            tabBarStyle: {
+              paddingTop: 50,
+              backgroundColor: 'black',
+              borderBottomColor: '#aa0000',
+              borderColor: '#aa0000',
+            },
+          }}
+        >
+          {props => <CharacterComicScreen {...props} character={character} />}
+        </Tab.Screen>
       </Tab.Navigator>
     </CharacterProvider>
   );

@@ -38,7 +38,7 @@ const Screen: React.FC<CharactersScreenType> = ({ navigation }) => {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#272b33' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
       {(!isLoading || characters.length > 0) && (
         <FlatList
           data={characters}

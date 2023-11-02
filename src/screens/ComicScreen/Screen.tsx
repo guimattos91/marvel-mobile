@@ -1,6 +1,7 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useCallback } from 'react';
 import { Entypo } from '@expo/vector-icons';
 import { View, Text, Image, ScrollView } from '@gluestack-ui/themed';
+import { useFocusEffect } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions, TouchableOpacity } from 'react-native';
@@ -25,9 +26,16 @@ const backgroundImageWidth = Dimensions.get('screen').width;
 const backgroundImageHeight = Dimensions.get('screen').width * 0.5;
 
 const Screen: React.FC<ComicScreenType> = ({ route, navigation }) => {
-  const { comic, fetchComic } = useComic();
+  const { comic, fetchComic, setComic } = useComic();
   const { id } = route.params.comic;
   const insets = useSafeAreaInsets();
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => setComic(null);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []),
+  );
 
   useEffect(() => {
     if (id) fetchComic(id);
@@ -36,9 +44,9 @@ const Screen: React.FC<ComicScreenType> = ({ route, navigation }) => {
   return (
     <>
       {/* eslint-disable-next-line react/style-prop-object */}
-      <StatusBar style="light" backgroundColor="#272b33" />
+      <StatusBar style="light" backgroundColor="black" />
 
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#272b33' }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
         {comic && (
           <ScrollView paddingTop={insets.top}>
             <View
@@ -47,6 +55,7 @@ const Screen: React.FC<ComicScreenType> = ({ route, navigation }) => {
               justifyContent="center"
               paddingBottom={20}
               paddingTop={20}
+              paddingHorizontal={30}
             >
               <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Entypo name="chevron-left" size={20} color="white" />

@@ -37,11 +37,11 @@ const Screen: React.FC<CharacterScreenType> = ({ navigation, character: RouteCha
   return (
     <>
       {/* eslint-disable-next-line react/style-prop-object */}
-      <StatusBar style="light" backgroundColor="#272b33" />
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#272b33' }}>
+      <StatusBar style="light" backgroundColor="black" />
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'black', }} >
         {character &&
           <ScrollView paddingTop={insets.top}>
-            <View flexDirection='row' alignItems='center' justifyContent='center' paddingBottom={20} paddingTop={20}>
+            <View flexDirection='row' alignItems='center' justifyContent='center' paddingBottom={20}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Entypo name="chevron-left" size={20} color='white' />
               </TouchableOpacity>
@@ -56,15 +56,23 @@ const Screen: React.FC<CharacterScreenType> = ({ navigation, character: RouteCha
               height={imageWidth}
               alignSelf='center'
             />
-            <Text color='$white' alignSelf='center' paddingHorizontal={40} paddingTop={20}>
-              {character.description}
-            </Text>
+            {character.description &&
+              <Text color='$white' alignSelf='center' paddingHorizontal={40} paddingTop={20}>
+                {character.description}
+              </Text>
+            }
+            {!character.description &&
+              <Text color='$white' alignSelf='center' paddingHorizontal={40} paddingTop={20}>
+                This character doesn&apos;t have a description yet.
+              </Text>
+            }
             <Image
               // eslint-disable-next-line global-require
               source={require('../../assets/background.png')}
               alt='Background Image with Waves'
               height={backgroundImageHeight}
               width={backgroundImageWidth}
+              style={{ transform: [{ scaleX: -1 }] }}
             />
           </ScrollView>
         }

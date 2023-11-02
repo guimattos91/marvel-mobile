@@ -35,7 +35,7 @@ const Routes: React.FC = () => {
         tabBarStyle: {
           backgroundColor: 'black',
           borderTopColor: '#aa0000',
-          borderTopWidth: 5,
+          borderTopWidth: 3,
           height: 70,
         },
         tabBarActiveTintColor: '#aa0000',

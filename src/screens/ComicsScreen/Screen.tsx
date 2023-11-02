@@ -38,7 +38,7 @@ const Screen: React.FC<ComicsScreenType> = ({ navigation }) => {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#272b33' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
       {(!isLoading || comics.length > 0) && (
         <FlatList
           data={comics}

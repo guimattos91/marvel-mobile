@@ -14,6 +14,7 @@ interface IContextProps {
   comic: ComicsType | null;
   error: string | null;
   isLoading: boolean;
+  setComic: React.Dispatch<React.SetStateAction<ComicsType | null>>;
   fetchComic: (id: number) => Promise<void>;
 }
 
@@ -49,11 +50,12 @@ export const ComicProvider: React.FC<ICComicsProviderProps> = ({
       value={useMemo(
         () => ({
           comic,
+          setComic,
           error,
           isLoading,
           fetchComic,
         }),
-        [comic, error, isLoading, fetchComic],
+        [comic, error, isLoading, fetchComic, setComic],
       )}
     >
       {children}
