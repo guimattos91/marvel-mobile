@@ -1,9 +1,9 @@
 import { memo, useCallback, useState, useEffect } from 'react';
-import { Text } from '@gluestack-ui/themed';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { HeaderComponent } from 'components/HeaderComponent';
+import { LoadingComponent } from 'components/LoadingComponent';
 import { useCharacters } from 'contexts/CharactersContext';
 import { HomeRouterParamListType } from 'routes/HomeCharactersRoute';
 import Component from './CharacterCard/Component';
@@ -21,10 +21,12 @@ const Screen: React.FC<CharactersScreenType> = ({ navigation }) => {
 
   const Header = useCallback(() => <HeaderComponent title="Characters" />, []);
   const Footer = useCallback(
-    () => (currentPage < totalPages ? <Text>Loading...</Text> : undefined),
+    () =>
+      currentPage < totalPages ? (
+        <LoadingComponent hei={20} wid={20} />
+      ) : undefined,
     [totalPages, currentPage],
   );
-
   const onEndReached = useCallback(async () => {
     if (currentPage < totalPages && !isFetching) {
       setIsFetching(true);

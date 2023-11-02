@@ -6,6 +6,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions, TouchableOpacity } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { LoadingComponent } from 'components/LoadingComponent';
 import { useCharacter } from 'contexts/CharacterContext';
 import { getImageUrl } from 'helpers/index';
 import { CharacterRouterParamListType } from 'routes/CharacterRoute';
@@ -25,7 +26,7 @@ const backgroundImageWidth = Dimensions.get('screen').width;
 const backgroundImageHeight = Dimensions.get('screen').width * 0.5;
 
 const Screen: React.FC<CharacterScreenType> = ({ navigation, character: RouteCharacter }) => {
-  const { character, fetchCharacter } = useCharacter()
+  const { character, isLoading, fetchCharacter } = useCharacter()
   const insets = useSafeAreaInsets();
 
 
@@ -39,6 +40,8 @@ const Screen: React.FC<CharacterScreenType> = ({ navigation, character: RouteCha
       {/* eslint-disable-next-line react/style-prop-object */}
       <StatusBar style="light" backgroundColor="black" />
       <SafeAreaView style={{ flex: 1, backgroundColor: 'black', }} >
+        {isLoading && !character && <LoadingComponent hei={200} wid={200} />
+        }
         {character &&
           <ScrollView paddingTop={insets.top}>
             <View flexDirection='row' alignItems='center' justifyContent='center' paddingBottom={20}>

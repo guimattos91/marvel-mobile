@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "marvel-mobile",
-    "slug": "marvel-mobile",
+    "slug": "marvel",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e21caa95-0f8e-4f03-8162-fe81d9125baf"
+      }
+    },
+    "owner": "guimattos91",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e21caa95-0f8e-4f03-8162-fe81d9125baf"
     }
   }
 }

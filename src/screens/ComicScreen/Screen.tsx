@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import { LoadingComponent } from 'components/LoadingComponent';
 import { useComic } from 'contexts/ComicContext';
 import { getImageUrl } from 'helpers/index';
 import { ComicRouterParamListType } from 'routes/HomeComicsRoute';
@@ -26,7 +27,7 @@ const backgroundImageWidth = Dimensions.get('screen').width;
 const backgroundImageHeight = Dimensions.get('screen').width * 0.5;
 
 const Screen: React.FC<ComicScreenType> = ({ route, navigation }) => {
-  const { comic, fetchComic, setComic } = useComic();
+  const { comic, isLoading, fetchComic, setComic } = useComic();
   const { id } = route.params.comic;
   const insets = useSafeAreaInsets();
 
@@ -47,6 +48,7 @@ const Screen: React.FC<ComicScreenType> = ({ route, navigation }) => {
       <StatusBar style="light" backgroundColor="black" />
 
       <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
+        {isLoading && !comic && <LoadingComponent hei={200} wid={200} />}
         {comic && (
           <ScrollView paddingTop={insets.top}>
             <View

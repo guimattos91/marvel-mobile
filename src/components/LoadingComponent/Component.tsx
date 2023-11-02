@@ -2,12 +2,17 @@ import React, { memo } from 'react';
 import { View } from '@gluestack-ui/themed';
 import LottieView from 'lottie-react-native';
 
-const LoadingComponent: React.FC = () => (
+interface ILoadingLottieProps {
+  wid: number;
+  hei: number;
+}
+
+const LoadingComponent: React.FC<ILoadingLottieProps> = ({ wid, hei }) => (
   <View flex={1} justifyContent="center" alignItems="center" my={16}>
     <LottieView
       // eslint-disable-next-line global-require
-      source={require('../../assets/animation/spiderLoading.json')}
-      style={{ width: 80, height: 80 }}
+      source={require('../../assets/animation/IronManLoading.json')}
+      style={{ width: wid, height: hei }}
       autoPlay
       loop
     />
