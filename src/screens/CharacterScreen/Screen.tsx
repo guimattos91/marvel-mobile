@@ -1,11 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React, { memo, useEffect } from 'react';
-import { Entypo } from '@expo/vector-icons';
-import { View, Text, Image, ScrollView } from '@gluestack-ui/themed';
+import { Text, Image, ScrollView } from '@gluestack-ui/themed';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import { Dimensions, TouchableOpacity } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Dimensions } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { LoadingComponent } from 'components/LoadingComponent';
 import { useCharacter } from 'contexts/CharacterContext';
 import { getImageUrl } from 'helpers/index';
@@ -21,13 +20,14 @@ export type CharacterScreenType = NativeStackScreenProps<
   character: CharacterType
 };
 
-const imageWidth = Dimensions.get('screen').width * 0.8;
-const backgroundImageWidth = Dimensions.get('screen').width;
-const backgroundImageHeight = Dimensions.get('screen').width * 0.5;
+const { width } = Dimensions.get('screen')
 
-const Screen: React.FC<CharacterScreenType> = ({ navigation, character: RouteCharacter }) => {
+const imageWidth = width * 0.8;
+const backgroundImageWidth = width;
+const backgroundImageHeight = width * 0.5;
+
+const Screen: React.FC<CharacterScreenType> = ({ character: RouteCharacter }) => {
   const { character, isLoading, fetchCharacter } = useCharacter()
-  const insets = useSafeAreaInsets();
 
 
   useEffect(() => {
@@ -43,15 +43,7 @@ const Screen: React.FC<CharacterScreenType> = ({ navigation, character: RouteCha
         {isLoading && !character && <LoadingComponent hei={200} wid={200} />
         }
         {character &&
-          <ScrollView paddingTop={insets.top}>
-            <View flexDirection='row' alignItems='center' justifyContent='center' paddingBottom={20}>
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Entypo name="chevron-left" size={20} color='white' />
-              </TouchableOpacity>
-              <Text color='white' fontSize={20} lineHeight={20} marginTop={3} textAlign='center' bold>
-                {character?.name}
-              </Text>
-            </View>
+          <ScrollView>
             <Image
               source={{ uri: getImageUrl(character.thumbnail) }}
               alt={character.name}

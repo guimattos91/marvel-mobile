@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { NavigatorScreenParams } from '@react-navigation/native';
 import {
-  NativeStackScreenProps,
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import { CharactersProvider } from 'contexts/CharactersContext';
@@ -9,12 +8,10 @@ import CharacterRoute, { CharacterRouterParamListType } from 'routes/CharacterRo
 import { HomeScreen } from 'screens/HomeScreen';
 import { CharacterType } from 'types/CharacterType';
 
-type CharacterRouteType = { character: CharacterType } & Partial<
-  NativeStackScreenProps<CharacterRouterParamListType, 'Character'>
->
+type CharacterRouteType = { character: CharacterType } & NavigatorScreenParams<CharacterRouterParamListType>
 
 export type HomeRouterParamListType = {
-  Characters: NavigatorScreenParams<CharacterRouterParamListType>;
+  Characters: undefined;
   OneCharacterRoute: CharacterRouteType;
 };
 
@@ -29,7 +26,15 @@ const HomeCharactersRoute: React.FC = () => {
         }}
       >
         <Stack.Screen name="Characters" component={HomeScreen} />
-        <Stack.Screen name="OneCharacterRoute" component={CharacterRoute} />
+        <Stack.Screen name="OneCharacterRoute" component={CharacterRoute} options={({ route }) => ({
+          headerShown: true,
+          headerTitle: route.params.character.name,
+          headerTintColor: '#aa0000',
+          headerStyle: {
+            backgroundColor: 'black',
+          }
+        })}
+        />
       </Stack.Navigator>
     </CharactersProvider>
   );

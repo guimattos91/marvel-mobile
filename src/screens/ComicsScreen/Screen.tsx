@@ -8,18 +8,19 @@ import { useComics } from 'contexts/ComicsContext';
 import { ComicRouterParamListType } from 'routes/HomeComicsRoute';
 import { ComicCard } from './ComicCard';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ComicsScreenType = NativeStackScreenProps<
   ComicRouterParamListType,
   'Comics'
 >;
+
+const Header: React.FC = () => <HeaderComponent title="Comics" />;
+
 const Screen: React.FC<ComicsScreenType> = ({ navigation }) => {
   const { comics, currentPage, totalPages, isLoading, fetchComics } =
     useComics();
 
   const [isFetching, setIsFetching] = useState(false);
 
-  const Header = useCallback(() => <HeaderComponent title="Comics" />, []);
   const Footer = useCallback(
     () =>
       currentPage < totalPages ? (
@@ -52,7 +53,7 @@ const Screen: React.FC<ComicsScreenType> = ({ navigation }) => {
             />
           )}
           numColumns={2}
-          keyExtractor={(_, index) => index.toString()}
+          keyExtractor={(item) => item.id.toString()}
           ListHeaderComponent={Header}
           ListFooterComponent={Footer}
           onEndReached={onEndReached}

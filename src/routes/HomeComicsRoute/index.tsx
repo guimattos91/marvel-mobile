@@ -29,7 +29,18 @@ const HomeComicsRoute: React.FC = () => {
           }}
         >
           <Stack.Screen name="Comics" component={ComicsScreen} />
-          <Stack.Screen name="Comic" component={ComicScreen} />
+          <Stack.Screen
+            name="Comic"
+            component={ComicScreen}
+            options={({ route }) => ({
+              headerShown: true,
+              headerTitle: route.params.comic.title,
+              headerTintColor: '#aa0000',
+              headerStyle: {
+                backgroundColor: 'black',
+              },
+            })}
+          />
         </Stack.Navigator>
       </ComicProvider>
     </ComicsProvider>

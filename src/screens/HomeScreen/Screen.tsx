@@ -6,7 +6,7 @@ import { HeaderComponent } from 'components/HeaderComponent';
 import { LoadingComponent } from 'components/LoadingComponent';
 import { useCharacters } from 'contexts/CharactersContext';
 import { HomeRouterParamListType } from 'routes/HomeCharactersRoute';
-import Component from './CharacterCard/Component';
+import { CharacterCard } from './CharacterCard';
 
 export type CharactersScreenType = NativeStackScreenProps<
   HomeRouterParamListType,
@@ -45,10 +45,13 @@ const Screen: React.FC<CharactersScreenType> = ({ navigation }) => {
         <FlatList
           data={characters}
           renderItem={({ item }) => (
-            <Component
+            <CharacterCard
               character={item}
               onPress={() =>
-                navigation.navigate('OneCharacterRoute', { character: item })
+                navigation.navigate('OneCharacterRoute', {
+                  character: item,
+                  screen: 'Character',
+                })
               }
             />
           )}

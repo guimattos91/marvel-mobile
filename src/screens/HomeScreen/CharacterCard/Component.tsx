@@ -9,14 +9,15 @@ interface ICharacterCardtProps {
   onPress: () => void;
 }
 
+const stylesBgImage = StyleSheet.create({
+  image: {
+    justifyContent: 'flex-end',
+    width: 150,
+    height: 180,
+  },
+});
+
 const Component: React.FC<ICharacterCardtProps> = ({ character, onPress }) => {
-  const stylesBgImage = StyleSheet.create({
-    image: {
-      justifyContent: 'flex-end',
-      width: 150,
-      height: 180,
-    },
-  });
   return (
     <TouchableOpacity
       style={{ flex: 1, alignItems: 'center' }}
